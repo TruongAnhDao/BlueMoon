@@ -34,3 +34,13 @@
 - Nhìn sang sidebar bên trái chọn biểu tượng Gradle (con voi)
 - Chọn BlueMoon/Tasks/application/run -> chọn Run
 - Sau khi ấn Run giao diện của chương trình sẽ hiện ra 
+
+3. Chi tiết công việc
+- Minh Anh: Lấy username/password từ giao diện, gọi MysqlConnection để so sánh với bảng users trong DB.
+- Bằng: 
+• Hoàn thiện class KhoanThuModel.java (khai báo các trường: id, tên, số tiền, loại phí).
+• Viết class KhoanThuService.java để thực hiện các lệnh thêm, sửa, xóa khoản thu vào CSDL.
+- Lê Hiếu: 
+• Cài Scene Builder
+• Chỉnh Login.fxml cho đẹp hơn (sử dụng Scene Builder)
+• Tạo thêm file MainView.fxml là giao diện sau khi login, file KhoanThuView.fxml là giao diện quản lí chi phí
