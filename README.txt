@@ -35,7 +35,19 @@
 - Chọn BlueMoon/Tasks/application/run -> chọn Run
 - Sau khi ấn Run giao diện của chương trình sẽ hiện ra 
 
-3. Chi tiết công việc
+3. Cấu trúc thư mục và chức năng (Không được code nhầm chỗ)
+src\main
+    java\com\bluemoon\app
+        application: Thiết lập cửa dổ ban đầu, tải file giao diện, không chứa logic nghiệp vụ
+        controllers: Cầu nối giữa giao diện(file .fxml) và dữ liệu (service), lắng nghe người dùng từ giao diện và chuyển yêu cầu sang service để thực hiện yêu cầu tương ứng trên DB
+        models: Chứa class dại diện các thực thể trong CSDL, biến và các hàm getter/setter, dùng để chuyển dữ liệu từ DB lên giao diện và ngược lại 
+        services: Kết nối tới CSDL, chứa các class xử lý tính toán, truy vấn SQL, controller gọi sang đây để lấy dữ liệu
+        utils: Chứa công cụ dùng chung cho dự án (Thường về định dạng)
+    resources
+        com\bluemoon\views: Chứa file giao diện .fxml
+        css: Chứa file css để điều chỉnh file fxml
+
+4. Chi tiết công việc
 - Minh Anh: Lấy username/password từ giao diện, gọi MysqlConnection để so sánh với bảng users trong DB.
 - Bằng: 
 • Hoàn thiện class KhoanThuModel.java (khai báo các trường: id, tên, số tiền, loại phí).
