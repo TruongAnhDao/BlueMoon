@@ -1,0 +1,86 @@
+Cấu trúc Database
+- Bảng users (Dùng cho Login)
++ id (PM)
++ username
++ password
++ role (Admin/ Kế toán)
+
+- Bảng ho_khau (Dùng cho quản lí thông tin hộ dân)
++ maHoKhau (PM) int 
++ diaChi varchar(200)
++ soThanhVien int 
+
+- Bảng nhan_khau (Quản lí nhân khẩu)
++ id (PM)
++ hoTen
++ ngaySinh
++ gioiTinh
++ danToc
++ tonGiao
++ cccd
++ ngayCap
++ noiCap
++ ngheNghiep
++ ghiChu
+
+- Bảng khoan_thu (Quản lí khoản thu gồm các loại phí)
++ maKhoanThu (PM) int 
++ tenKhoanThu varchar(100)
++ soTien double 
++ loaiKhoanThu (bắt buộc/ tự nguyện) int (0: bắt buộc/1: tự nguyện)
+
+- Bảng nop_tien (Lịch sử thu phí) (Nối giữa hộ khẩu và khoản thu)
++ idNopTien (PM)
++ maKhoanThu (PM)(FK từ bảng khoan_thu) 
++ maHo (PM)(FK)
++ soTienNop double 
++ ngayNop date 
++ nguoiNop varchar(100)
+
+- Bảng tam_tru_tam_vang (Khai báo tạm trú, tạm vắng)
++ id (PM)
++ idNhanKhau (FK)
++ trangThai int (0: tạm trú, 1: tạm vắng)
++ diaChi
++ thoiGian
++ noiDung
+
+- Bảng quan_he (Xác định thành viên của hộ)
++ idNhanKhau (FK)
++ maHoKhau (FK)
++ quanHeVoiChuHo
+
+- Bảng chu_ho (Xác định chủ hộ)
++ idNhanKhau (FK)
++ maHoKhau (FK)
+
+Quan hệ
+A. Nhóm Quản lý cư dân 
+- ho_khau và quan_he (1 - n)
+    Mô tả: Một Hộ khẩu có nhiều Thành viên (được lưu trong bảng quan_he).
+    Liên kết: ho_khau.maHoKhau (PK) nối với quan_he.maHoKhau (FK).
+
+- nhan_khau và quan_he (1 - n)
+    Mô tả: Một Nhân khẩu thực tế chỉ thuộc về một hộ tại một thời điểm, nhưng về mặt thiết kế dữ liệu, bảng quan_he đóng vai trò trung gian để xác định nhân khẩu đó thuộc hộ nào và là ai (Chủ hộ, con, vợ...).
+    Liên kết: nhan_khau.id (PK) nối với quan_he.idNhanKhau (FK).
+
+- ho_khau và chu_ho (1 - 1)
+    Mô tả: Một Hộ khẩu chỉ có duy nhất một Chủ hộ tại một thời điểm.
+    Liên kết: ho_khau.maHoKhau (PK) nối với chu_ho.maHoKhau (FK).
+
+- nhan_khau và chu_ho (1 - 1)
+    Mô tả: Một người cụ thể được chỉ định làm chủ hộ.
+    Liên kết: nhan_khau.id (PK) nối với chu_ho.idNhanKhau (FK).
+
+- nhan_khau và tam_tru_tam_vang (1 - n)
+    Mô tả: Một Nhân khẩu có thể có nhiều lần khai báo tạm trú hoặc tạm vắng (lịch sử khai báo).
+    Liên kết: nhan_khau.id (PK) nối với tam_tru_tam_vang.idNhanKhau (FK).
+
+B. Nhóm Quản lý thu phí
+- ho_khau và nop_tien (1 - n)
+    Mô tả: Một Hộ gia đình có thể thực hiện nhiều lần nộp tiền (cho nhiều khoản hoặc nhiều đợt khác nhau).
+    Liên kết: ho_khau.maHoKhau (PK) nối với nop_tien.maHo (FK).
+
+- khoan_thu và nop_tien (1 - n)
+    Mô tả: Một Khoản thu (ví dụ: Phí vệ sinh 2023) sẽ có nhiều bản ghi nộp tiền từ các hộ khác nhau.
+    Liên kết: khoan_thu.maKhoanThu (PK) nối với nop_tien.maKhoanThu (FK).
