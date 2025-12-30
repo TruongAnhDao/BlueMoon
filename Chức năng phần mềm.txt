@@ -1,0 +1,48 @@
+1. Quản lí thu phí
+    - Tạo/Sửa/Xóa khoản thu: (Phân loại bắt buộc hay tự nguyện) (nên cho tùy chỉnh số tiền, không code cứng)
+        + Phí dịch vụ (loại: bắt buộc): Tính dựa trên diện tích căn hộ (2.500-16.500 đồng/m2/tháng) 
+        + Phí quản lí (loại: bắt buộc): Tính dựa trên diện tích căn hộ (từ 7.000 đồng/m2)
+        + Phí vệ sinh (loại: bắt buộc): Tính dựa trên số nhân khẩu, thu theo năm(6.000 đồng/nhân khẩu/tháng)
+        + Khoản đóng góp (loại: tự nguyện): Thu theo đợt vận động
+        + Phí gửi xe (loại: bắt buộc): Thu theo số xe của hộ (xe máy: 70.000/xe/tháng, ô tô: 1.200.000/xe/tháng)
+        + Phí điện nước, internet:
+    - Lập danh sách: Thực hiện thu tiền và lưu vào hệ thống
+        + Danh sách hộ gia đình
+        + Danh sách các khoản thu bắt buộc
+        + Danh sách các khoản thu tự nguyện 
+    - Thu phí: Ghi nhận đóng góp
+        + Ghi nhận nộp phí cho khoản thu bắt buộc
+        + Ghi nhận ủng hộ cho khoản thu tự nguyện
+    - Thống kê: 
+        + Thống kê tổng tiền đã thu mỗi đợt
+        + Thống kê danh sách mỗi hộ đã nộp tiền
+    - Truy vấn:
+        + Thông tin số tiền nộp mỗi hộ
+        + Tổng số tiền nộp mỗi đặt 
+        + Tổng số hộ nộp mỗi đợt
+
+2. Quản lí nhân khẩu và hộ khẩu
+    - Biến đổi nhân khẩu: 
+        + Thêm nhân khẩu
+        + Thay đổi nhân khẩu
+        + Thay đổi chủ hộ
+        + Tách hộ
+        + Cấp tạm trú, tạm vắng
+    - Thống kê:
+        + Thống kê theo giới tính
+        + Thống kê theo độ tuổi
+        + Thống kê theo khoảng thời gian 
+        + Thống kê tạm trú, tạm vắng
+    - Truy vấn
+        + Tìm kiếm thông tin
+        + Xem lịch sử thay đổi nhân khẩu
+
+3. Quản lí hệ thống
+    - Đăng kí tài khoản
+    - Đăng nhập phân quyền 
+        + Tổ trưởng/ tổ phó: Sử dụng hệ thống với chức năng quản lí hộ khẩu, nhân khẩu và quản lí phân quyền cho tài khoản trong hệ thống
+        + Kế toán: 
+            * Đăng nhập
+            * Quản lí các khoản thu: Tạo/Sửa/Xóa khoản thu
+            * Quản lí đợt thu phí: Thêm thông tin nộp khoản thu các hộ gia đình, Thống kê, Truy vấn
+    - Thay đổi mật khẩu, thông tin
