@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- 
+    Root StackPane: Sử dụng nền Gradient xanh đậm để phù hợp với tên "Blue Moon"
+-->
+<StackPane prefHeight="500.0" prefWidth="700.0" 
+           style="-fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);" 
+           xmlns="http://javafx.com/javafx/8" 
+           xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="com.bluemoon.app.controllers.LoginController">
+   
+   <children>
+      <!-- Form Container: Nền trắng, bo góc, đổ bóng -->
+      <VBox alignment="CENTER" maxWidth="380.0" spacing="20.0" 
+            style="-fx-background-color: #FFFFFF; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5); -fx-padding: 40;">
+         
+         <children>
+            <!-- Header -->
+            <VBox alignment="CENTER" spacing="5.0">
+                <Label text="BLUE MOON" textFill="#243b55">
+                   <font>
+                      <Font name="System Bold" size="28.0" />
+                   </font>
+                </Label>
+                <Label text="MANAGEMENT SYSTEM" textFill="#7f8c8d">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Label>
+                <VBox.margin>
+                   <Insets bottom="10.0" />
+                </VBox.margin>
+            </VBox>
+
+            <!-- Inputs -->
+            <VBox spacing="15.0">
+                <TextField fx:id="tfUsername" promptText="Tên đăng nhập" 
+                           style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #E0E0E0; -fx-border-radius: 5;" />
+                
+                <PasswordField fx:id="pfPassword" promptText="Mật khẩu" 
+                               style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #E0E0E0; -fx-border-radius: 5;" />
+            </VBox>
+
+            <!-- Forgot Password Link -->
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Hyperlink onAction="#handleForgotPassword" 
+                             style="-fx-text-fill: #243B55; -fx-font-size: 12px; -fx-underline: false;" 
+                             text="Quên mật khẩu?" />
+               </children>
+               <VBox.margin>
+                  <Insets top="-10.0" />
+               </VBox.margin>
+            </HBox>
+
+            <!-- Login Button -->
+            <Button maxWidth="1.7976931348623157E308" onAction="#handleLogin" 
+                    style="-fx-background-color: #243B55; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" 
+                    text="ĐĂNG NHẬP">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <!-- Register Link -->
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label text="Chưa có tài khoản?" textFill="#666666" />
+                  <Hyperlink onAction="#handleRegister" 
+                             style="-fx-text-fill: #2980b9; -fx-font-weight: bold;" 
+                             text="Đăng ký ngay" />
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
