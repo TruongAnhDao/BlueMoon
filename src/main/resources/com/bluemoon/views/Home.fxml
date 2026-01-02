@@ -5,15 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bluemoon.app.controllers.HomeController">
+<!-- QUAN TRỌNG: Đã thêm fx:id="mainBorderPane" vào thẻ BorderPane dưới đây -->
+<BorderPane fx:id="mainBorderPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bluemoon.app.controllers.HomeController">
    <left>
       <VBox prefWidth="220.0" spacing="10.0" style="-fx-background-color: #243B55;">
          <children>
@@ -30,8 +24,12 @@
             
             <VBox spacing="5.0">
                <children>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="🏠 Trang chủ" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="👥 Quản lý Hộ khẩu" />
+                  <!-- Nút Trang chủ: bấm vào để quay lại màn hình chào mừng -->
+                  <Button onAction="#showHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="🏠 Trang chủ" />
+                  
+                  <!-- Nút Quản lý Hộ khẩu: bấm vào để hiện bảng -->
+                  <Button onAction="#showHousehold" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="👥 Quản lý Hộ khẩu" />
+                  
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="💰 Quản lý Khoản thu" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="📊 Thống kê" />
                </children>
@@ -48,6 +46,7 @@
       </VBox>
    </left>
    
+   <!-- Center: Mặc định là màn hình chào mừng -->
    <center>
       <VBox alignment="CENTER" style="-fx-background-color: #f5f6fa;" BorderPane.alignment="CENTER">
          <children>
