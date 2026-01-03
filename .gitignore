@@ -1,0 +1,10 @@
+# Bỏ qua thư mục build và cache của Gradle
+.gradle/
+build/
+bin/
+
+# Bỏ qua file cài đặt của các IDE (nếu có dùng chung với người khác)
+.idea/
+.vscode/
+*.class
+*.log
