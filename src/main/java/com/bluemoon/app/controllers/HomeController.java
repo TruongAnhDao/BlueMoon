@@ -1,16 +1,3 @@
-// package com.bluemoon.app.controllers;
-
-// import java.io.IOException;
-
-// import javafx.event.ActionEvent;
-// import javafx.fxml.FXML;
-// import javafx.fxml.FXMLLoader;
-// import javafx.scene.Node;
-// import javafx.scene.Parent;
-// import javafx.scene.Scene;
-// import javafx.scene.control.Alert;
-// import javafx.stage.Stage;
-
 // public class HomeController {
 
 //     // 1. Chức năng Đăng xuất
@@ -56,6 +43,7 @@
 package com.bluemoon.app.controllers;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -103,7 +91,7 @@ public class HomeController implements Initializable {
         System.out.println("Chuyển tab: Quản lý hộ khẩu");
         // Gọi hàm load phần giữa
         // LƯU Ý: Kiểm tra kỹ đường dẫn file FXML của bạn
-        loadCenterView("/com/bluemoon/views/HouseholdView.fxml"); 
+        loadCenterView("/com/bluemoon/views/Household.fxml"); 
     }
 
     @FXML

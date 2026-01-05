@@ -1,5 +1,6 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<!--
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -61,7 +62,6 @@
       </VBox>
    </center>
 </BorderPane> -->
-<?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -88,13 +88,16 @@
             <VBox spacing="5.0">
                <children>
                   <!-- Nút Trang chủ: bấm vào để quay lại màn hình chào mừng -->
-                  <Button onAction="#showHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="🏠 Trang chủ" />
+                  <Button onAction="#handleGoToHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="🏠 Trang chủ" />
                   
                   <!-- Nút Quản lý Hộ khẩu: bấm vào để hiện bảng -->
-                  <Button onAction="#showHousehold" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="👥 Quản lý Hộ khẩu" />
+                  <Button onAction="#handleGoToHoKhau" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="👥 Quản lý Hộ khẩu" />
                   
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="💰 Quản lý Khoản thu" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="📊 Thống kê" />
+                  <!-- Nút Quản lý Khoản thu -->
+                  <Button onAction="#handleGoToKhoanThu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="💰 Quản lý Khoản thu" />
+                  
+                  <!-- Nút Thống kê -->
+                  <Button onAction="#handleGoToThongKe" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="📊 Thống kê" />
                </children>
             </VBox>
             
