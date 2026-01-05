@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -48,6 +48,68 @@
       </VBox>
    </left>
    
+   <center>
+      <VBox alignment="CENTER" style="-fx-background-color: #f5f6fa;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="CHÀO MỪNG BẠN ĐẾN VỚI HỆ THỐNG BLUE MOON" textFill="#2c3e50">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label text="Vui lòng chọn chức năng ở menu bên trái để bắt đầu" textFill="#7f8c8d" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane> -->
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- QUAN TRỌNG: Đã thêm fx:id="mainBorderPane" vào thẻ BorderPane dưới đây -->
+<BorderPane fx:id="mainBorderPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bluemoon.app.controllers.HomeController">
+   <left>
+      <VBox prefWidth="220.0" spacing="10.0" style="-fx-background-color: #243B55;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+               <children>
+                  <Label text="BLUE MOON" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Quản lý chung cư" textFill="#bdc3c7" />
+               </children>
+            </VBox>
+            
+            <VBox spacing="5.0">
+               <children>
+                  <!-- Nút Trang chủ: bấm vào để quay lại màn hình chào mừng -->
+                  <Button onAction="#showHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="🏠 Trang chủ" />
+                  
+                  <!-- Nút Quản lý Hộ khẩu: bấm vào để hiện bảng -->
+                  <Button onAction="#showHousehold" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="👥 Quản lý Hộ khẩu" />
+                  
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="💰 Quản lý Khoản thu" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="📊 Thống kê" />
+               </children>
+            </VBox>
+            
+            <StackPane VBox.vgrow="ALWAYS" />
+            
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 12;" text="Đăng xuất">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   
+   <!-- Center: Mặc định là màn hình chào mừng -->
    <center>
       <VBox alignment="CENTER" style="-fx-background-color: #f5f6fa;" BorderPane.alignment="CENTER">
          <children>
