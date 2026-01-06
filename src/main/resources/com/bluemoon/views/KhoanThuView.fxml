@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- Controller liên kết: Bạn cần tạo thêm FeeController tương ứng nếu muốn xử lý logic bảng -->
+<VBox prefHeight="600.0" prefWidth="680.0" spacing="10.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bluemoon.app.controllers.FeeController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <!-- Title -->
+      <Label text="DASHBOARD &gt; QUẢN LÝ KHOẢN THU" textFill="#7f8c8d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+
+      <!-- Action Bar: Search & Buttons -->
+      <HBox spacing="10.0">
+         <children>
+            <TextField fx:id="searchTextField" prefHeight="35.0" prefWidth="250.0" promptText="Tìm kiếm tên khoản thu..." style="-fx-background-radius: 5; -fx-border-color: #dcdde1; -fx-border-radius: 5;" />
+            
+            <Button fx:id="btnSearch" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Tìm kiếm" />
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <Button fx:id="btnAdd" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-background-radius: 5;" text="+ Thêm mới" />
+            
+            <Button fx:id="btnExcel" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Xuất Excel" />
+         </children>
+      </HBox>
+
+      <!-- Table View -->
+      <TableView fx:id="feeTable" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="colMaKhoanThu" prefWidth="100.0" text="Mã khoản thu" />
+            <TableColumn fx:id="colTenKhoanThu" prefWidth="200.0" text="Tên khoản thu" />
+            <TableColumn fx:id="colDonGia" prefWidth="120.0" text="Đơn giá (VND)" />
+            <TableColumn fx:id="colLoaiPhi" prefWidth="120.0" text="Loại phí" />
+            <TableColumn fx:id="colThaoTac" prefWidth="100.0" text="Thao tác" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+
+      <!-- Footer Summary -->
+      <HBox>
+         <children>
+            <Label text="Tổng cộng: " textFill="#7f8c8d" />
+            <Label fx:id="lblTotalRecord" text="0" textFill="#2c3e50">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label text=" khoản thu" textFill="#7f8c8d" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

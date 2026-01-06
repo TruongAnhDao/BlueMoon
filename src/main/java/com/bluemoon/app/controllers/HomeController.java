@@ -43,7 +43,6 @@
 package com.bluemoon.app.controllers;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -91,7 +90,7 @@ public class HomeController implements Initializable {
         System.out.println("Chuyển tab: Quản lý hộ khẩu");
         // Gọi hàm load phần giữa
         // LƯU Ý: Kiểm tra kỹ đường dẫn file FXML của bạn
-        loadCenterView("/com/bluemoon/views/Household.fxml"); 
+        loadCenterView("/com/bluemoon/views/HoKhauView.fxml"); 
     }
 
     @FXML
@@ -158,6 +157,7 @@ public class HomeController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
+        
         alert.setContentText(content);
         alert.show();
     }
