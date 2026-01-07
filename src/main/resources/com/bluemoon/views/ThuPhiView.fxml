@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 20;" 
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.bluemoon.app.controllers.ThuPhiController">
+    
+    <!-- 1. HEADER & SEARCH -->
+    <HBox alignment="CENTER_LEFT" spacing="15.0">
+        <children>
+            <VBox>
+                <children>
+                    <Label text="LỊCH SỬ THU PHÍ" textFill="#2c3e50">
+                        <font>
+                            <Font name="System Bold" size="22.0" />
+                        </font>
+                    </Label>
+                    <Label text="Quản lý các khoản đã nộp của cư dân" textFill="#7f8c8d" />
+                </children>
+            </VBox>
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <TextField fx:id="searchField" prefHeight="35.0" prefWidth="250.0" promptText="Tìm theo Mã hộ khẩu..." style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" />
+            
+            <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="35.0" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 5;" text="Tìm kiếm">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+        </children>
+    </HBox>
+
+    <Separator prefWidth="200.0" />
+
+    <!-- 2. ACTION BUTTONS -->
+    <HBox spacing="10.0">
+        <children>
+            <Button mnemonicParsing="false" onAction="#handleAddNewPayment" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 5;" text="+ Ghi nhận khoản thu mới">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Button>
+            
+            <Button mnemonicParsing="false" onAction="#handleDeletePayment" prefHeight="35.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 5;" text="Xóa lịch sử">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Button>
+            
+            <Button mnemonicParsing="false" onAction="#handleRefresh" prefHeight="35.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 5;" text="Làm mới" />
+        </children>
+    </HBox>
+
+    <!-- 3. DATA TABLE -->
+    <!-- Bảng này hiển thị dữ liệu từ bảng `nop_tien` nhưng cần join với `khoan_thu` để lấy tên -->
+    <TableView fx:id="historyTable" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: white; -fx-border-color: #ecf0f1;" VBox.vgrow="ALWAYS">
+        <columns>
+            <!-- ID giao dịch (nop_tien.id) -->
+            <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+            
+            <!-- Mã hộ khẩu (nop_tien.maHoKhau) -->
+            <TableColumn fx:id="colMaHoKhau" prefWidth="120.0" text="Mã Hộ Khẩu" />
+            
+            <!-- Tên khoản thu (Lấy từ khoan_thu.tenKhoanThu thông qua nop_tien.idKhoanThu) -->
+            <TableColumn fx:id="colTenKhoanThu" prefWidth="250.0" text="Tên Khoản Thu" />
+            
+            <!-- Số tiền nộp (nop_tien.soTienNop) -->
+            <TableColumn fx:id="colSoTien" prefWidth="150.0" style="-fx-alignment: CENTER-RIGHT;" text="Số Tiền (VNĐ)" />
+            
+            <!-- Ngày nộp (nop_tien.ngayNop) -->
+            <TableColumn fx:id="colNgayNop" prefWidth="150.0" style="-fx-alignment: CENTER;" text="Ngày Nộp" />
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+
+    <!-- 4. FOOTER / PAGINATION (Optional) -->
+    <HBox alignment="CENTER_RIGHT">
+        <children>
+            <Label fx:id="lblTotalRecords" text="Tổng số bản ghi: 0" textFill="#7f8c8d" />
+        </children>
+    </HBox>
+    
+</VBox>
