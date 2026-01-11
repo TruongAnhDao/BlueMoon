@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MysqlConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/quan_ly_dan_cu";
+    private static final String URL = "jdbc:mysql://localhost:3306/blue_moon_db";
     private static final String USER = "root"; 
     private static final String PASS = "T06012005a@"; // Mật khẩu MySQL của bạn, nếu không có thì để trống ""
 

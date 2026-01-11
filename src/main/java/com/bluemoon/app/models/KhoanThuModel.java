@@ -59,11 +59,6 @@ public class KhoanThuModel {
     // (Tùy chọn) Override toString để debug dễ hơn
     @Override
     public String toString() {
-        return "KhoanThuModel{" +
-                "ma=" + maKhoanThu +
-                ", ten='" + tenKhoanThu + '\'' +
-                ", tien=" + soTien +
-                ", loai=" + loaiKhoanThu +
-                '}';
+        return tenKhoanThu;
     }
 }
