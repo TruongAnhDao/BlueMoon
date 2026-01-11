@@ -75,6 +75,9 @@
             
             <!-- Ngày nộp (nop_tien.ngayNop) -->
             <TableColumn fx:id="colNgayNop" prefWidth="150.0" style="-fx-alignment: CENTER;" text="Ngày Nộp" />
+
+            <!-- Người nộp (noptien.nguoinop)-->
+            <TableColumn fx:id="colNguoiNop" prefWidth="150.0" text="Người Nộp" />
         </columns>
         <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
