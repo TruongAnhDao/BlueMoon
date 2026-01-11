@@ -48,9 +48,26 @@ public class HoKhauController implements Initializable {
                 btnDelete.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 10px;");
                 
                 btnEdit.setOnAction(event -> {
-                    HoKhauModel data = getTableView().getItems().get(getIndex());
-                    System.out.println("Sửa hộ: " + data.getMaHoKhau());
-                    // TODO: Mở popup sửa thông tin hộ
+                    HoKhauModel selectedData = getTableView().getItems().get(getIndex());
+                        try {
+                            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/bluemoon/views/EditHoKhauView.fxml"));
+                            javafx.scene.Parent root = loader.load();
+        
+                            // Lấy controller của màn hình Edit để truyền dữ liệu vào
+                            EditHoKhauController editController = loader.getController();
+                            editController.setHoKhauData(selectedData); // Truyền dữ liệu dòng đang chọn sang
+        
+                            javafx.stage.Stage stage = new javafx.stage.Stage();
+                            stage.setTitle("Sửa thông tin hộ khẩu");
+                            stage.setScene(new javafx.scene.Scene(root));
+                            stage.showAndWait(); // Chờ sửa xong
+        
+                            loadData(); // Tải lại bảng để cập nhật thông tin mới
+        
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            AlertUtils.showError("Không thể mở form sửa: " + e.getMessage());
+                        }
                 });
 
                 btnDelete.setOnAction(event -> {

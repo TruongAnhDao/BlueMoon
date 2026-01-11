@@ -14,6 +14,7 @@ public class NhanKhauModel {
     private String noiCap;
     private String ngheNghiep;
     private String ghiChu;
+    private String quanHeVoiChuHo;
 
     public NhanKhauModel() {}
 
@@ -74,6 +75,14 @@ public class NhanKhauModel {
 
     public String getGhiChu() { return ghiChu; }
     public void setGhiChu(String ghiChu) { this.ghiChu = ghiChu; }
+
+    public String getQuanHeVoiChuHo() {
+        return quanHeVoiChuHo;
+    }
+
+    public void setQuanHeVoiChuHo(String quanHeVoiChuHo) {
+        this.quanHeVoiChuHo = quanHeVoiChuHo;
+    }
 
     @Override
     public String toString() {
