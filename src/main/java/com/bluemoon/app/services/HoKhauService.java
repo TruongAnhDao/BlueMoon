@@ -1,6 +1,10 @@
 package com.bluemoon.app.services;
 
 import com.bluemoon.app.models.HoKhauModel;
+import com.bluemoon.app.models.NhanKhauModel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,6 +36,25 @@ public class HoKhauService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return list;
+    }
+
+    // Lấy danh sách nhân khẩu để chọn làm chủ hộ
+    public static List<NhanKhauModel> getAllNhanKhau() {
+        List<NhanKhauModel> list = new ArrayList<>();
+        String sql = "SELECT id, hoTen, ngaySinh, cccd FROM nhan_khau";
+        try {
+            ResultSet rs = MysqlConnection.executeQuery(sql);
+            while (rs.next()) {
+                list.add(new NhanKhauModel(
+                    rs.getInt("id"),
+                    rs.getString("hoTen"),
+                    rs.getDate("ngaySinh"),
+                    rs.getString("cccd")
+                ));
+            }
+            rs.getStatement().getConnection().close();
+        } catch (SQLException e) { e.printStackTrace(); }
         return list;
     }
 
@@ -71,6 +94,60 @@ public class HoKhauService {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    // Thêm hộ khẩu mới (Kỹ thuật Transaction)
+    public static boolean addHoKhau(HoKhauModel hoKhau, int idChuHo) {
+        Connection conn = MysqlConnection.getConnection();
+        PreparedStatement pstmt1 = null;
+        PreparedStatement pstmt2 = null;
+        PreparedStatement pstmt3 = null;
+        
+        try {
+            // Tắt chế độ tự động lưu để quản lý giao dịch
+            conn.setAutoCommit(false);
+
+            // Thêm vào bảng ho_khau
+            String sql1 = "INSERT INTO ho_khau (maHoKhau, diaChi, soThanhVien) VALUES (?, ?, ?)";
+            pstmt1 = conn.prepareStatement(sql1);
+            pstmt1.setInt(1, hoKhau.getMaHoKhau());
+            pstmt1.setString(2, hoKhau.getDiaChi());
+            pstmt1.setInt(3, 1); // Mới tạo thì có 1 thành viên là chủ hộ
+            pstmt1.executeUpdate();
+
+            // Thêm vào bảng chu_ho
+            String sql2 = "INSERT INTO chu_ho (idNhanKhau, maHoKhau) VALUES (?, ?)";
+            pstmt2 = conn.prepareStatement(sql2);
+            pstmt2.setInt(1, idChuHo);
+            pstmt2.setInt(2, hoKhau.getMaHoKhau());
+            pstmt2.executeUpdate();
+
+            // Thêm vào bảng quan_he (Xác nhận người này là Chủ hộ)
+            String sql3 = "INSERT INTO quan_he (idNhanKhau, maHoKhau, quanHeVoiChuHo) VALUES (?, ?, ?)";
+            pstmt3 = conn.prepareStatement(sql3);
+            pstmt3.setInt(1, idChuHo);
+            pstmt3.setInt(2, hoKhau.getMaHoKhau());
+            pstmt3.setString(3, "Chủ hộ");
+            pstmt3.executeUpdate();
+
+            // Nếu cả 3 bước ok thì mới lưu thật
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (conn != null) conn.rollback(); // Gặp lỗi thì hoàn tác
+            } catch (SQLException ex) { ex.printStackTrace(); }
+            return false;
+        } finally {
+            try {
+                if (pstmt1 != null) pstmt1.close();
+                if (pstmt2 != null) pstmt2.close();
+                if (pstmt3 != null) pstmt3.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) { e.printStackTrace(); }
         }
     }
 }

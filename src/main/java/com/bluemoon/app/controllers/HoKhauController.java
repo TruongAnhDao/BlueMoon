@@ -91,7 +91,18 @@ public class HoKhauController implements Initializable {
 
     @FXML
     private void handleAdd() {
-        AlertUtils.showSuccess("Chức năng thêm mới đang phát triển!");
-        // TODO: Mở form thêm hộ khẩu mới (tương tự AddThuPhiController)
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/bluemoon/views/AddHoKhauView.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Thêm hộ khẩu");
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.showAndWait(); // Chờ đóng cửa sổ
+            
+            loadData(); // Tải lại bảng sau khi thêm xong
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtils.showError("Lỗi mở form thêm mới: " + e.getMessage());
+        }
     }
 }
