@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <!-- Controller liên kết: Bạn cần tạo thêm FeeController tương ứng nếu muốn xử lý logic bảng -->
-<VBox prefHeight="600.0" prefWidth="680.0" spacing="10.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bluemoon.app.controllers.FeeController">
+<VBox prefHeight="600.0" prefWidth="680.0" spacing="10.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bluemoon.app.controllers.KhoanThuController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
