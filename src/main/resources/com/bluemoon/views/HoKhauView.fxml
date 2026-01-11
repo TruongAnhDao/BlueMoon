@@ -5,8 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<!-- Lưu ý: fx:controller trỏ tới file Java xử lý bảng này, nếu chưa có thì để trống hoặc tạo sau -->
-<VBox prefHeight="600.0" prefWidth="680.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #f5f6fa;"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bluemoon.app.controllers.HoKhauController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -19,20 +20,24 @@
 
       <HBox spacing="10.0">
          <children>
-            <TextField promptText="Tìm kiếm hộ dân..." style="-fx-background-radius: 5;" HBox.hgrow="ALWAYS" />
-            <Button text="Tìm" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
-            <Button text="+ Thêm mới" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" />
-            <Button text="Xuất Excel" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+            <TextField fx:id="txtSearch" prefHeight="35.0" promptText="Tìm theo Mã hộ hoặc Tên chủ hộ..." 
+                       style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
+            
+            <Button onAction="#handleSearch" prefHeight="35.0" text="Tìm kiếm" 
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;"/>
+            
+            <Button onAction="#handleAdd" prefHeight="35.0" text="+ Thêm mới" 
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;"/>
          </children>
       </HBox>
 
-      <TableView VBox.vgrow="ALWAYS" style="-fx-border-color: #ecf0f1;">
+      <TableView fx:id="tableHoKhau" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
         <columns>
-          <TableColumn text="Mã Hộ" prefWidth="100.0" />
-          <TableColumn text="Chủ hộ" prefWidth="150.0" />
-          <TableColumn text="Diện tích" prefWidth="100.0" />
-          <TableColumn text="Trạng thái" prefWidth="100.0" />
-          <TableColumn text="Thao tác" prefWidth="100.0" />
+          <TableColumn fx:id="colMaHo" text="Mã Hộ" prefWidth="100.0" />
+          <TableColumn fx:id="colChuHo" text="Chủ hộ" prefWidth="200.0" />
+          <TableColumn fx:id="colDiaChi" text="Địa chỉ" prefWidth="250.0" />
+          <TableColumn fx:id="colThanhVien" text="Số thành viên" prefWidth="100.0" style="-fx-alignment: CENTER;" />
+          <TableColumn fx:id="colThaoTac" text="Thao tác" prefWidth="120.0" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

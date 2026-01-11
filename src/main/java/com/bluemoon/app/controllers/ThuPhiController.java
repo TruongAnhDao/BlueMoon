@@ -26,6 +26,7 @@ public class ThuPhiController implements Initializable {
     @FXML private TableColumn<ThuPhiModel, String> colTenKhoanThu;
     @FXML private TableColumn<ThuPhiModel, Double> colSoTien;
     @FXML private TableColumn<ThuPhiModel, java.util.Date> colNgayNop;
+    @FXML private TableColumn<ThuPhiModel, String> colNguoiNop;
     @FXML private Label lblTotalRecords;
 
     private ObservableList<ThuPhiModel> masterData = FXCollections.observableArrayList();
@@ -44,6 +45,7 @@ public class ThuPhiController implements Initializable {
         colTenKhoanThu.setCellValueFactory(new PropertyValueFactory<>("tenKhoanThu"));
         colSoTien.setCellValueFactory(new PropertyValueFactory<>("soTienNop"));
         colNgayNop.setCellValueFactory(new PropertyValueFactory<>("ngayNop"));
+        colNguoiNop.setCellValueFactory(new PropertyValueFactory<>("nguoiNop"));
 
         // Định dạng cột Số tiền sang VNĐ bằng FormatUtils
         colSoTien.setCellFactory(column -> new TableCell<ThuPhiModel, Double>() {
@@ -124,9 +126,18 @@ public class ThuPhiController implements Initializable {
     // 6. Mở màn hình ghi nhận khoản thu mới
     @FXML
     void handleAddNewPayment(ActionEvent event) {
-        // Ở đây bạn có thể mở một Stage (cửa sổ) mới để nhập thông tin nộp tiền
-        System.out.println("Mở màn hình thêm mới...");
-        AlertUtils.showSuccess("Chức năng đang được phát triển: Mở Form nhập liệu!");
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/bluemoon/views/AddThuPhiView.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Ghi nhận khoản thu mới");
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.showAndWait(); // Đợi đóng cửa sổ thêm mới xong
+            loadData(); // Tải lại bảng để thấy dữ liệu mới
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtils.showError("Không thể mở form thêm mới!");
+        }
     }
 
     private void updateTotalCount() {

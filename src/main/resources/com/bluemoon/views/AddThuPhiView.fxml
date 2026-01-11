@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.bluemoon.app.controllers.AddThuPhiController">
+    <children>
+        <Label text="GHI NHẬN THU PHÍ MỚI" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+        
+        <GridPane hgap="10" vgap="15">
+            <children>
+                <Label text="Mã hộ khẩu:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="txtMaHo" promptText="Nhập mã hộ..." GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Khoản thu:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <ComboBox fx:id="cbKhoanThu" prefWidth="200" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Số tiền nộp:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <TextField fx:id="txtSoTien" promptText="Ví dụ: 50000" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <Label text="Người nộp:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextField fx:id="txtNguoiNop" promptText="Tên người đóng tiền" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+            </children>
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Lưu" onAction="#handleSave" style="-fx-background-color: #27ae60; -fx-text-fill: white;" />
+            <Button text="Hủy" onAction="#handleCancel" />
+        </HBox>
+    </children>
+</VBox>
