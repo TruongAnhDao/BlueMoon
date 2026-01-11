@@ -47,6 +47,7 @@ public class EditHoKhauController {
         colTenTV.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
         colNgaySinhTV.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
         colCccdTV.setCellValueFactory(new PropertyValueFactory<>("cccd"));
+        colQuanHeTV.setCellValueFactory(new PropertyValueFactory<>("quanHeVoiChuHo"));
         
         // Format ngày sinh
         colNgaySinhTV.setCellFactory(column -> new TableCell<>() {

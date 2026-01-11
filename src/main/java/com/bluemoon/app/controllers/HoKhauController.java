@@ -40,7 +40,7 @@ public class HoKhauController implements Initializable {
 
         // Thêm nút Xem/Sửa/Xóa
         colThaoTac.setCellFactory(param -> new TableCell<>() {
-            private final Button btnEdit = new Button("Sửa");
+            private final Button btnEdit = new Button("Chi tiết");
             private final Button btnDelete = new Button("Xóa");
 
             {
