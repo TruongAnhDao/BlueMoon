@@ -55,7 +55,7 @@
       <HBox>
          <children>
             <Label text="Tổng cộng: " textFill="#7f8c8d" />
-            <Label fx:id="lblTotalRecord" text="0" textFill="#2c3e50">
+            <Label fx:id="lblTongCong" text="0" textFill="#2c3e50">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

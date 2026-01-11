@@ -32,7 +32,6 @@ import javafx.util.Callback;
 public class KhoanThuController implements Initializable {
 
     // --- Khai báo các biến giao diện (FXML) ---
-    // Đảm bảo fx:id trong SceneBuilder trùng khớp với các tên biến này
     @FXML private TextField searchTextField;
     @FXML private Button btnSearch;
     @FXML private Button btnAdd;
@@ -41,7 +40,8 @@ public class KhoanThuController implements Initializable {
     @FXML private TableColumn<KhoanThuModel, String> colTenKhoanThu;
     @FXML private TableColumn<KhoanThuModel, Double> colDonGia;
     @FXML private TableColumn<KhoanThuModel, String> colLoaiPhi;
-    @FXML private TableColumn<KhoanThuModel, Void> colThaoTac; // Cột chứa nút Xóa
+    @FXML private TableColumn<KhoanThuModel, Void> colThaoTac; 
+    @FXML private Label lblTongCong; // Đã liên kết với FXML
 
     // --- Khai báo Service và List dữ liệu ---
     private final KhoanThuService khoanThuService = new KhoanThuService();
@@ -89,6 +89,9 @@ public class KhoanThuController implements Initializable {
         masterData.clear();
         masterData.addAll(khoanThuService.getAllKhoanThu());
         feeTable.setItems(masterData);
+        
+        // --- QUAN TRỌNG: Cập nhật số lượng ngay sau khi tải dữ liệu ---
+        updateCount(); 
     }
 
     // 3. Gán sự kiện cho các nút
@@ -103,6 +106,9 @@ public class KhoanThuController implements Initializable {
                 masterData.addAll(khoanThuService.searchKhoanThu(keyword));
             }
             feeTable.setItems(masterData);
+            
+            // --- QUAN TRỌNG: Cập nhật số lượng sau khi tìm kiếm ---
+            updateCount();
         });
 
         // Sự kiện Thêm mới
@@ -162,7 +168,7 @@ public class KhoanThuController implements Initializable {
         result.ifPresent(khoanThu -> {
             if (khoanThuService.addKhoanThu(khoanThu)) {
                 showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm khoản thu mới!");
-                loadDataFromDB();
+                loadDataFromDB(); // Tải lại bảng (sẽ tự gọi updateCount)
             } else {
                 showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thất bại (Vui lòng kiểm tra lại dữ liệu).");
             }
@@ -185,7 +191,7 @@ public class KhoanThuController implements Initializable {
                     Optional<ButtonType> option = alert.showAndWait();
                     if (option.isPresent() && option.get() == ButtonType.OK) {
                         if (khoanThuService.deleteKhoanThu(data.getMaKhoanThu())) {
-                            loadDataFromDB();
+                            loadDataFromDB(); // Tải lại bảng (sẽ tự gọi updateCount)
                             showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã xóa khoản thu.");
                         } else {
                             showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể xóa (Có thể khoản thu này đang có dữ liệu nộp tiền).");
@@ -203,12 +209,22 @@ public class KhoanThuController implements Initializable {
         colThaoTac.setCellFactory(cellFactory);
     }
 
-    // 6. Hàm tiện ích hiển thị thông báo (Thay thế cho AlertUtils)
+    // 6. Hàm tiện ích hiển thị thông báo
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    // 7. Hàm cập nhật số lượng (Được gọi ở loadDataFromDB và btnSearch)
+    private void updateCount() {
+        if (feeTable.getItems() != null) {
+            int count = feeTable.getItems().size(); // Đếm số lượng item hiện có trong bảng
+            lblTongCong.setText(String.valueOf(count)); // Gán text hiển thị
+        } else {
+            lblTongCong.setText("0");
+        }
     }
 }

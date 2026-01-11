@@ -109,4 +109,24 @@ public class KhoanThuService {
         }
         return list;
     }
+    public int getSoLuongKhoanThu() {
+        int count = 0;
+        String query = "SELECT COUNT(*) FROM khoan_thu";
+        ResultSet rs = null;
+        try {
+            rs = MysqlConnection.executeQuery(query);
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.getStatement().getConnection().close();
+                } catch (SQLException e) {}
+            }
+        }
+        return count;
+    }
 }
