@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: white;"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bluemoon.app.controllers.AddNhanKhauController">
+    
+    <Label text="THÊM NHÂN KHẨU MỚI" textFill="#2980b9">
+        <font>
+            <Font name="System Bold" size="18.0" />
+        </font>
+    </Label>
+
+    <GridPane hgap="15.0" vgap="10.0">
+        <Label text="Họ và tên (*):" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtHoTen" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Ngày sinh (*):" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <DatePicker fx:id="dpNgaySinh" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+        <Label text="Giới tính (*):" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbGioiTinh" prefWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Dân tộc:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtDanToc" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+        <Label text="Tôn giáo:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTonGiao" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="CCCD/CMND:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtCCCD" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+        <Label text="Ngày cấp:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dpNgayCap" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Nơi cấp:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtNoiCap" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+        
+        <Label text="Nghề nghiệp:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNgheNghiep" GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+        <Label text="Ghi chú:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextArea fx:id="txtGhiChu" prefHeight="60" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Lưu thông tin" onAction="#handleSave" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        <Button text="Hủy" onAction="#handleCancel" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

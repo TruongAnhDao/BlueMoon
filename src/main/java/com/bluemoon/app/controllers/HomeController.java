@@ -63,6 +63,12 @@ public class HomeController implements Initializable {
         loadCenterView("/com/bluemoon/views/ThuphiView.fxml");
     }
 
+    @FXML
+    public void handleGoToNhanKhau(ActionEvent event) {
+        System.out.println("Chuyển tab: Quản lý nhân khẩu");
+        loadCenterView("/com/bluemoon/views/NhanKhauView.fxml");
+    }
+
 
     // --- NHÓM 2: CÁC NÚT HỆ THỐNG (Thay đổi toàn bộ cửa sổ) ---
 

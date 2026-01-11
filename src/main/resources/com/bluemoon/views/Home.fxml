@@ -35,6 +35,8 @@
                   
                   <!-- Nút Thống kê -->
                   <Button onAction="#handleGoToThuPhi" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="📊 Thu Phí" />
+
+                  <Button onAction="#handleGoToNhanKhau" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 15;" text="👨‍👩‍👧‍👦 Quản lý Nhân khẩu" />
                </children>
             </VBox>
             

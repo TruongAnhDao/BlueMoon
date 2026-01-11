@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" spacing="15.0" style="-fx-background-color: #f5f6fa;"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bluemoon.app.controllers.NhanKhauController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <Label text="DASHBOARD &gt; QUẢN LÝ NHÂN KHẨU" textFill="#2c3e50">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+
+      <HBox spacing="10.0">
+         <children>
+            <TextField fx:id="txtSearch" prefHeight="35.0" promptText="Tìm theo tên hoặc CCCD..." 
+                       style="-fx-background-radius: 5; -fx-border-color: #bdc3c7;" HBox.hgrow="ALWAYS" />
+            
+            <Button onAction="#handleSearch" prefHeight="35.0" text="Tìm kiếm" 
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            
+            <Button onAction="#handleAdd" prefHeight="35.0" text="+ Thêm mới" 
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+             <Button onAction="#handleDelete" prefHeight="35.0" text="Xóa" 
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+         </children>
+      </HBox>
+
+      <TableView fx:id="tableNhanKhau" VBox.vgrow="ALWAYS" style="-fx-background-color: white;">
+        <columns>
+          <TableColumn fx:id="colHoTen" text="Họ tên" prefWidth="150.0" />
+          <TableColumn fx:id="colNgaySinh" text="Ngày sinh" prefWidth="100.0" />
+          <TableColumn fx:id="colGioiTinh" text="Giới tính" prefWidth="70.0" />
+          <TableColumn fx:id="colCCCD" text="CCCD/CMND" prefWidth="120.0" />
+          <TableColumn fx:id="colDanToc" text="Dân tộc" prefWidth="80.0" />
+          <TableColumn fx:id="colNgheNghiep" text="Nghề nghiệp" prefWidth="120.0" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</VBox>
