@@ -137,54 +137,107 @@ public class EditHoKhauController {
     // --- XỬ LÝ THÊM THÀNH VIÊN (POPUP ĐƠN GIẢN) ---
     @FXML
     private void handleAddMember() {
-        // Tạo một Dialog nhỏ để chọn người thêm vào
-        Dialog<NhanKhauModel> dialog = new Dialog<>();
-        dialog.setTitle("Thêm thành viên");
-        dialog.setHeaderText("Chọn nhân khẩu từ hệ thống");
+        // 1. Tạo Dialog tùy chỉnh
+        Dialog<Boolean> dialog = new Dialog<>();
+        dialog.setTitle("Thêm thành viên vào hộ");
+        dialog.setHeaderText("Tìm kiếm và chọn nhân khẩu");
 
-        // Nút bấm
-        ButtonType loginButtonType = new ButtonType("Thêm", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+        // 2. Các nút bấm (Thêm / Hủy)
+        ButtonType addButtonType = new ButtonType("Thêm vào hộ", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(addButtonType, ButtonType.CANCEL);
 
-        // Giao diện bên trong Dialog
+        // 3. Tạo giao diện bên trong Dialog
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
+        grid.setPrefWidth(500); // Mở rộng chiều ngang cho dễ nhìn
 
-        ComboBox<NhanKhauModel> cbAllPeople = new ComboBox<>();
-        cbAllPeople.setPromptText("Tìm chọn nhân khẩu...");
-        cbAllPeople.setPrefWidth(300);
+        // Ô nhập từ khóa tìm kiếm
+        TextField txtSearchName = new TextField();
+        txtSearchName.setPromptText("Nhập tên hoặc CCCD để tìm...");
         
-        // Tải TOÀN BỘ nhân khẩu vào đây để chọn (Lưu ý: Thực tế nên lọc những người chưa có hộ khẩu)
-        cbAllPeople.getItems().addAll(HoKhauService.getAllNhanKhau()); 
+        // Bảng hiển thị kết quả tìm kiếm
+        TableView<NhanKhauModel> tableResult = new TableView<>();
+        tableResult.setPrefHeight(200);
+        
+        TableColumn<NhanKhauModel, String> colName = new TableColumn<>("Họ tên");
+        colName.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
+        colName.setPrefWidth(180);
+        
+        TableColumn<NhanKhauModel, java.util.Date> colDob = new TableColumn<>("Ngày sinh");
+        colDob.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+        colDob.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(java.util.Date item, boolean empty) {
+                super.updateItem(item, empty);
+                setText((empty || item == null) ? null : FormatUtils.formatDate(item));
+            }
+        });
+        
+        TableColumn<NhanKhauModel, String> colCccd = new TableColumn<>("CCCD");
+        colCccd.setCellValueFactory(new PropertyValueFactory<>("cccd"));
 
+        tableResult.getColumns().addAll(colName, colDob, colCccd);
+        tableResult.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        // Ô nhập quan hệ
         TextField txtQuanHe = new TextField();
-        txtQuanHe.setPromptText("Quan hệ với chủ hộ (VD: Con, Cháu...)");
+        txtQuanHe.setPromptText("Quan hệ với chủ hộ (VD: Con, Vợ...)");
 
-        grid.add(new Label("Nhân khẩu:"), 0, 0);
-        grid.add(cbAllPeople, 1, 0);
-        grid.add(new Label("Quan hệ:"), 0, 1);
-        grid.add(txtQuanHe, 1, 1);
+        // Layout
+        grid.add(new Label("Tìm kiếm:"), 0, 0);
+        grid.add(txtSearchName, 1, 0);
+        grid.add(tableResult, 0, 1, 2, 1); // Bảng chiếm 2 cột
+        grid.add(new Label("Quan hệ:"), 0, 2);
+        grid.add(txtQuanHe, 1, 2);
 
         dialog.getDialogPane().setContent(grid);
 
-        // Logic trả về kết quả
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == loginButtonType) {
-                return cbAllPeople.getValue();
+        // 4. Logic tìm kiếm (Gõ đến đâu tìm đến đó)
+        txtSearchName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                tableResult.getItems().clear();
+            } else {
+                // Gọi Service tìm kiếm (cần đảm bảo NhanKhauService.searchNhanKhau đã hoạt động tốt)
+                List<NhanKhauModel> results = com.bluemoon.app.services.NhanKhauService.searchNhanKhau(newValue.trim());
+                tableResult.getItems().setAll(results);
             }
-            return null;
         });
 
-        Optional<NhanKhauModel> result = dialog.showAndWait();
+        // Vô hiệu hóa nút "Thêm" nếu chưa chọn người
+        javafx.scene.Node addButton = dialog.getDialogPane().lookupButton(addButtonType);
+        addButton.setDisable(true);
 
-        result.ifPresent(person -> {
-            String quanHe = txtQuanHe.getText().isEmpty() ? "Thành viên" : txtQuanHe.getText();
-            if (HoKhauService.addMember(person.getId(), currentMaHo, quanHe)) {
+        // Khi chọn 1 dòng thì mới sáng nút Thêm
+        tableResult.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            addButton.setDisable(newSelection == null);
+        });
+
+        // 5. Xử lý kết quả trả về
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == addButtonType) {
+                NhanKhauModel selectedPerson = tableResult.getSelectionModel().getSelectedItem();
+                String quanHe = txtQuanHe.getText().trim();
+                if (quanHe.isEmpty()) quanHe = "Thành viên";
+
+                if (selectedPerson != null) {
+                    // Gọi Service thêm vào DB
+                    if (HoKhauService.addMember(selectedPerson.getId(), currentMaHo, quanHe)) {
+                        return true; // Thành công
+                    } else {
+                        AlertUtils.showError("Người này đã có trong hộ hoặc lỗi hệ thống!");
+                    }
+                }
+            }
+            return false;
+        });
+
+        // Hiển thị Dialog và xử lý sau khi đóng
+        Optional<Boolean> result = dialog.showAndWait();
+        result.ifPresent(success -> {
+            if (success) {
                 AlertUtils.showSuccess("Thêm thành viên thành công!");
-                loadMembersData();
-            } else {
-                AlertUtils.showError("Thất bại! (Người này có thể đã có trong hộ này).");
+                loadMembersData(); // Tải lại bảng danh sách thành viên
             }
         });
     }
