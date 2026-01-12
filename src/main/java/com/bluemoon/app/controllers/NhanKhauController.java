@@ -52,6 +52,38 @@ public class NhanKhauController implements Initializable {
                 else setText(FormatUtils.formatDate(item));
             }
         });
+
+        // --- BẮT SỰ KIỆN DOUBLE CLICK VÀO BẢNG ---
+        tableNhanKhau.setRowFactory(tv -> {
+            TableRow<NhanKhauModel> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                // Kiểm tra click đúp (click count = 2) và hàng không rỗng
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    NhanKhauModel rowData = row.getItem();
+                    showDetail(rowData); // Gọi hàm mở chi tiết
+                }
+            });
+            return row;
+        });
+    }
+
+    private void showDetail(NhanKhauModel nhanKhau) {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/bluemoon/views/DetailNhanKhauView.fxml"));
+            javafx.scene.Parent root = loader.load();
+            
+            // Lấy Controller chi tiết và truyền dữ liệu vào
+            DetailNhanKhauController controller = loader.getController();
+            controller.setNhanKhau(nhanKhau);
+            
+            Stage stage = new Stage();
+            stage.setTitle("Chi tiết nhân khẩu: " + nhanKhau.getHoTen());
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.show(); // Dùng show() thay vì showAndWait() để có thể mở nhiều cửa sổ cùng lúc nếu muốn
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtils.showError("Không thể mở cửa sổ chi tiết!");
+        }
     }
 
     private void loadData() {

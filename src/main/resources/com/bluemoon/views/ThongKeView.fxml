@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #f5f6fa;"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bluemoon.app.controllers.ThongKeController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+
+    <Label text="DASHBOARD &gt; THỐNG KÊ SỐ LIỆU" textFill="#2c3e50">
+        <font>
+            <Font name="System Bold" size="22.0" />
+        </font>
+    </Label>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+            <Tab text="Thống kê Nhân khẩu">
+                <content>
+                    <ScrollPane fitToWidth="true">
+                        <content>
+                            <VBox spacing="20.0" style="-fx-padding: 20; -fx-background-color: white;">
+                                <Label fx:id="lblTotalNhanKhau" text="Tổng nhân khẩu: ..." textFill="#e67e22">
+                                    <font><Font name="System Bold" size="16.0" /></font>
+                                </Label>
+                                
+                                <HBox spacing="20.0">
+                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                        <Label text="Tỷ lệ Giới tính" style="-fx-font-weight: bold;"/>
+                                        <PieChart fx:id="pieGioiTinh" prefHeight="300.0" />
+                                    </VBox>
+                                    
+                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                        <Label text="Tỷ lệ Tạm trú / Tạm vắng" style="-fx-font-weight: bold;"/>
+                                        <PieChart fx:id="pieTamTruTamVang" prefHeight="300.0" />
+                                    </VBox>
+                                </HBox>
+
+                                <Separator />
+                                
+                                <VBox alignment="CENTER">
+                                    <Label text="Phân bố Độ tuổi" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                                    <BarChart fx:id="barDoTuoi" titleSide="BOTTOM">
+                                        <xAxis>
+                                            <CategoryAxis label="Nhóm tuổi" />
+                                        </xAxis>
+                                        <yAxis>
+                                            <NumberAxis label="Số lượng" />
+                                        </yAxis>
+                                    </BarChart>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                </content>
+            </Tab>
+
+            <Tab text="Thống kê Tài chính">
+                <content>
+                    <VBox spacing="20.0" style="-fx-padding: 20; -fx-background-color: white;">
+                        <Label text="Tổng quan thu phí" textFill="#27ae60">
+                            <font><Font name="System Bold" size="18.0" /></font>
+                        </Label>
+                        
+                        <BarChart fx:id="barKhoanThu" title="Tổng tiền đã thu theo từng khoản" VBox.vgrow="ALWAYS">
+                            <xAxis>
+                                <CategoryAxis label="Khoản thu" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Số tiền (VNĐ)" />
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+</VBox>

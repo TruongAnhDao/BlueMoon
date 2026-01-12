@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20.0" style="-fx-padding: 30; -fx-background-color: white;" prefWidth="500"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bluemoon.app.controllers.DetailNhanKhauController">
+
+    <Label text="THÔNG TIN CHI TIẾT NHÂN KHẨU" textFill="#2c3e50">
+        <font><Font name="System Bold" size="20.0" /></font>
+    </Label>
+
+    <GridPane hgap="15" vgap="15">
+        <Label text="Họ và tên:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" />
+        <Label fx:id="lblHoTen" text="..." GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Ngày sinh:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" />
+        <Label fx:id="lblNgaySinh" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Giới tính:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" />
+        <Label fx:id="lblGioiTinh" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="CCCD/CMND:" style="-fx-font-weight: bold;" GridPane.rowIndex="3" />
+        <Label fx:id="lblCCCD" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Dân tộc:" style="-fx-font-weight: bold;" GridPane.rowIndex="4" />
+        <Label fx:id="lblDanToc" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <Label text="Tôn giáo:" style="-fx-font-weight: bold;" GridPane.rowIndex="5" />
+        <Label fx:id="lblTonGiao" text="..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        
+        <Label text="Ngày cấp:" style="-fx-font-weight: bold;" GridPane.rowIndex="6" />
+        <Label fx:id="lblNgayCap" text="..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        
+        <Label text="Nơi cấp:" style="-fx-font-weight: bold;" GridPane.rowIndex="7" />
+        <Label fx:id="lblNoiCap" text="..." GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        
+        <Label text="Nghề nghiệp:" style="-fx-font-weight: bold;" GridPane.rowIndex="8" />
+        <Label fx:id="lblNgheNghiep" text="..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        
+        <Label text="Ghi chú:" style="-fx-font-weight: bold;" GridPane.rowIndex="9" />
+        <Label fx:id="lblGhiChu" text="..." GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    </GridPane>
+
+    <Separator />
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Khai báo Tạm trú / Tạm vắng" onAction="#handleKhaiBao" 
+                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" />
+        
+        <Button text="Đóng" onAction="#handleClose" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-padding: 10 20;" />
+    </HBox>
+</VBox>

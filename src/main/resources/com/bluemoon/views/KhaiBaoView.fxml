@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: white;" prefWidth="450"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bluemoon.app.controllers.KhaiBaoController">
+
+    <Label text="KHAI BÁO TẠM TRÚ / TẠM VẮNG" textFill="#2980b9">
+        <font><Font name="System Bold" size="16.0" /></font>
+    </Label>
+    
+    <Label fx:id="lblHoTen" text="..." style="-fx-font-style: italic; -fx-text-fill: #7f8c8d;" />
+
+    <GridPane hgap="10" vgap="15">
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <Label text="Loại hình:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbLoaiHinh" maxWidth="1.7976931348623157E308" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <Label text="Địa chỉ/Nơi đến:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtDiaChi" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+        <Label text="Từ ngày:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dpThoiGian" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+        <Label text="Lý do/Ghi chú:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextArea fx:id="txtNoiDung" prefHeight="80" wrapText="true" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Xác nhận" onAction="#handleSave" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" />
+        <Button text="Hủy" onAction="#handleCancel" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" />
+    </HBox>
+</VBox>

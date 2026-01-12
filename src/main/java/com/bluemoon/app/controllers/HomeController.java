@@ -69,6 +69,12 @@ public class HomeController implements Initializable {
         loadCenterView("/com/bluemoon/views/NhanKhauView.fxml");
     }
 
+    @FXML
+    public void handleGoToThongKe(ActionEvent event) {
+        System.out.println("Chuyển tab: Thống kê");
+        loadCenterView("/com/bluemoon/views/ThongKeView.fxml");
+    }
+
 
     // --- NHÓM 2: CÁC NÚT HỆ THỐNG (Thay đổi toàn bộ cửa sổ) ---
 
